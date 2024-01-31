@@ -48,4 +48,5 @@ return require('packer').startup(function(use)
   use('folke/neodev.nvim')
 
   use('tpope/vim-fugitive')
+  use{"akinsho/toggleterm.nvim", tag = '*'}
 end)
