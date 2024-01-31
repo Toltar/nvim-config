@@ -1,3 +1,8 @@
 local toggleterm = require('toggleterm')
 
-vim.keymap.set("n", "<leader>th", toggleterm.toggle(1, 40, )
+toggleterm.setup({
+    size = function()
+        return 20
+    end,
+    open_mapping = [[<C-\>]]
+})
