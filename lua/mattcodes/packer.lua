@@ -49,4 +49,6 @@ return require('packer').startup(function(use)
 
   use('tpope/vim-fugitive')
   use{"akinsho/toggleterm.nvim", tag = '*'}
+
+  use('ThePrimeagen/vim-be-good')
 end)
