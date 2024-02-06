@@ -51,4 +51,7 @@ return require('packer').startup(function(use)
   use{"akinsho/toggleterm.nvim", tag = '*'}
 
   use('ThePrimeagen/vim-be-good')
+  use('nvim-lua/plenary.nvim')
+  use('ThePrimeagen/harpoon')
+
 end)
