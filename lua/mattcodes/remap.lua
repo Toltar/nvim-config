@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 -- Easy split windows and quit windows splits with leader key instead of Ctrl as a pereference
 vim.keymap.set("n", "<leader>wn", vim.cmd.split)
