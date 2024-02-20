@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
+  use('nvim-treesitter/nvim-treesitter-context')
 
   -- LSP Manager
   use {
@@ -54,5 +55,11 @@ return require('packer').startup(function(use)
   use('nvim-lua/plenary.nvim')
   use('ThePrimeagen/harpoon')
 
-  use('jiangmiao/auto-pairs')
+
+  use {
+      "SmiteshP/nvim-navic",
+      requires = {
+          'neovim/nvim-lspconfig',
+      },
+  }
 end)
