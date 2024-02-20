@@ -4,4 +4,6 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 
+vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
+
 vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<CR>', { noremap = true })
