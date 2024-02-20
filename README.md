@@ -1,4 +1,4 @@
-# Matt Dickens Neovim Configuration
+# Neovim Configuration
 
 This holds all my configuration for Neovim. I created this config working from these articles and videos to learn how to configure NeoVim:
 
