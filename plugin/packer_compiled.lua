@@ -170,6 +170,11 @@ _G.packer_plugins = {
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["typescript-tools.nvim"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/typescript-tools.nvim",
+    url = "https://github.com/pmizio/typescript-tools.nvim"
+  },
   ["vim-be-good"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-be-good",
