@@ -20,10 +20,10 @@ return require('packer').startup(function(use)
 
   use 'rstacruz/vim-closer'
 
+  use 'nvim-tree/nvim-web-devicons'
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.5',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+	  'nvim-telescope/telescope.nvim',
+      requires = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' }
   }
 
   use {
@@ -31,16 +31,9 @@ return require('packer').startup(function(use)
       requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
   }
 
-  use({
-	  'folke/tokyonight.nvim',
-	  lazy = false,
-	  priority = 1000,
-	  opts = {},
-	  config = function()
-		  vim.cmd('colorscheme tokyonight-night')
-	  end
-  })
 
+  use 'lewis6991/gitsigns.nvim'
+  use { "catppuccin/nvim", { as = "catppuccin" }}
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -87,7 +80,6 @@ return require('packer').startup(function(use)
           'neovim/nvim-lspconfig',
       },
   }
-
 
   if packer_bootstrap then
       require('packer').sync()
