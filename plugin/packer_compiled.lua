@@ -147,7 +147,7 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/nvim-tree/nvim-web-devicons"
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -179,15 +179,15 @@ _G.packer_plugins = {
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   ["typescript-tools.nvim"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/typescript-tools.nvim",
     url = "https://github.com/pmizio/typescript-tools.nvim"
-  },
-  ["vim-be-good"] = {
-    loaded = true,
-    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-be-good",
-    url = "https://github.com/ThePrimeagen/vim-be-good"
   },
   ["vim-closer"] = {
     loaded = true,

@@ -20,10 +20,9 @@ return require('packer').startup(function(use)
 
   use 'rstacruz/vim-closer'
 
-  use 'nvim-tree/nvim-web-devicons'
   use {
 	  'nvim-telescope/telescope.nvim',
-      requires = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' }
+      requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' }
   }
 
   use {
@@ -69,7 +68,6 @@ return require('packer').startup(function(use)
   use('tpope/vim-fugitive')
   use{"akinsho/toggleterm.nvim", tag = '*'}
 
-  use('ThePrimeagen/vim-be-good')
   use('nvim-lua/plenary.nvim')
   use('ThePrimeagen/harpoon')
 
@@ -79,6 +77,12 @@ return require('packer').startup(function(use)
       requires = {
           'neovim/nvim-lspconfig',
       },
+  }
+
+  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
   }
 
   if packer_bootstrap then
