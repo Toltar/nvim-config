@@ -1,12 +1,12 @@
 local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-        vim.cmd [[packeradd packer.nvim]]
-        return true
-    end
-    return false
+  local fn = vim.fn
+  local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+    vim.cmd [[packeradd packer.nvim]]
+    return true
+  end
+  return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -21,63 +21,62 @@ return require('packer').startup(function(use)
   use 'rstacruz/vim-closer'
 
   use {
-	  'nvim-telescope/telescope.nvim',
-      requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' }
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
   }
 
   use {
-      'nvim-telescope/telescope-file-browser.nvim',
-      requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   }
 
-
   use 'lewis6991/gitsigns.nvim'
-  use { "catppuccin/nvim", { as = "catppuccin" }}
+  use { 'catppuccin/nvim', { as = 'catppuccin' } }
 
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use('nvim-treesitter/playground')
-  use('nvim-treesitter/nvim-treesitter-context')
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- LSP Manager
   use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v3.x',
-	  requires = {
-		  --- Uncomment the two plugins below if you want to manage the language servers from neovim
-		  {'williamboman/mason.nvim'},
-		  {'williamboman/mason-lspconfig.nvim'},
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    requires = {
+      --- Uncomment the two plugins below if you want to manage the language servers from neovim
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'L3MON4D3/LuaSnip'},
-	  }
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
+    },
   }
+  use 'mfussenegger/nvim-lint'
   use {
     'pmizio/typescript-tools.nvim',
     requires = {
-        'neovim/nvim-lspconfig',
-        'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim',
     },
   }
 
-  use('folke/neodev.nvim')
+  use 'folke/neodev.nvim'
 
-  use('tpope/vim-fugitive')
+  use 'tpope/vim-fugitive'
 
-  use{"akinsho/toggleterm.nvim", tag = '*'}
+  use { 'akinsho/toggleterm.nvim', tag = '*' }
 
-  use('nvim-lua/plenary.nvim')
-  use('ThePrimeagen/harpoon')
-
+  use 'nvim-lua/plenary.nvim'
+  use 'ThePrimeagen/harpoon'
 
   use {
-      "SmiteshP/nvim-navic",
-      requires = {
-          'neovim/nvim-lspconfig',
-      },
+    'SmiteshP/nvim-navic',
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
   }
 
   use 'kyazdani42/nvim-web-devicons'
@@ -87,14 +86,16 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
   }
 
-  use({
-    "stevearc/oil.nvim",
+  use {
+    'stevearc/oil.nvim',
     config = function()
-      require("oil").setup()
+      require('oil').setup()
     end,
-  })
+  }
+
+  use { 'mhartington/formatter.nvim' }
 
   if packer_bootstrap then
-      require('packer').sync()
+    require('packer').sync()
   end
 end)

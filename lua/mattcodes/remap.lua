@@ -16,3 +16,7 @@ vim.keymap.set("n", "<leader>p", "\"_dP")
 -- Bash script keymaps -------------------------------------
 -- Add execute permission to file with leader + x
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+
+-- Autoformat
+vim.api.nvim_create_autocmd({ "BufWritePost" }, vim.lsp.buf.format())
