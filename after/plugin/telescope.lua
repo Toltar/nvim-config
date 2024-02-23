@@ -3,17 +3,17 @@ local builtin = require 'telescope.builtin'
 
 -- Telescope Settings
 telescope.setup {
-  pickers = {
-    find_files = {
-      hidden = true,
+    pickers = {
+        find_files = {
+            hidden = true,
+        },
     },
-  },
-  extensions = {
-    file_browser = {
-      hidden = { file_browser = true, folder_browser = true },
-      hijack_netrw = true,
+    extensions = {
+        file_browser = {
+            hidden = { file_browser = true, folder_browser = true },
+            hijack_netrw = true,
+        },
     },
-  },
 }
 -- Telescope Project Mappings
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
