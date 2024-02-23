@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
   use('folke/neodev.nvim')
 
   use('tpope/vim-fugitive')
+
   use{"akinsho/toggleterm.nvim", tag = '*'}
 
   use('nvim-lua/plenary.nvim')
@@ -85,6 +86,13 @@ return require('packer').startup(function(use)
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
   }
+
+  use({
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  })
 
   if packer_bootstrap then
       require('packer').sync()
