@@ -5,6 +5,7 @@ oil.setup({
     keymaps = {
         ["<C-o>"] = "actions.preview",
     },
+    experimental_watch_for_changes = true,
     view_options = {
         show_hidden = true,
     },
