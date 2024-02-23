@@ -3,7 +3,6 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-
 -- SPACING AND INDENTATION
 -- =======================
 vim.opt.tabstop = 4
@@ -14,7 +13,6 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
-
 
 -- Other Settings
 -- =================
