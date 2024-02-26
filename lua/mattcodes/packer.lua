@@ -10,7 +10,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
-
+local someVar = 1
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -18,6 +18,9 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use {
+        'numToStr/Comment.nvim',
+    }
     use 'rstacruz/vim-closer'
 
     use {
@@ -88,9 +91,6 @@ return require('packer').startup(function(use)
 
     use {
         'stevearc/oil.nvim',
-        config = function()
-            require('oil').setup()
-        end,
     }
 
     use { 'mhartington/formatter.nvim' }

@@ -1,11 +1,13 @@
--- TODO: Need to map keys to what I want for harpoon mark and UI
 local mark = require 'harpoon.mark'
 local ui = require 'harpoon.ui'
+
+local oil = require 'oil'
 
 vim.keymap.set('n', '<leader>a', mark.add_file)
 vim.keymap.set('n', '<C-g>', ui.toggle_quick_menu)
 
 vim.keymap.set('n', '<C-h>', function()
+    oil.close()
     ui.nav_file(1)
 end)
 vim.keymap.set('n', '<C-j>', function()
