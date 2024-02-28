@@ -189,6 +189,11 @@ _G.packer_plugins = {
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rainbow-delimiters.nvim"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/rainbow-delimiters.nvim",
+    url = "https://github.com/HiPhish/rainbow-delimiters.nvim"
+  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",

@@ -10,7 +10,6 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
-local someVar = 1
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -24,6 +23,7 @@ return require('packer').startup(function(use)
     use 'rstacruz/vim-closer'
 
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'HiPhish/rainbow-delimiters.nvim'
 
     use {
         'nvim-telescope/telescope.nvim',
