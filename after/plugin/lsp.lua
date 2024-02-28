@@ -1,8 +1,6 @@
 local lsp_zero = require 'lsp-zero'
 
 lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
     lsp_zero.default_keymaps { buffer = bufnr }
 end)
 
@@ -14,16 +12,6 @@ require('mason-lspconfig').setup {
         'tsserver',
         'eslint',
         'rust_analyzer',
-        'lua_ls',
-        'bashls',
-        'dockerls',
-        'docker_compose_language_service',
-        'dprint',
-        'gopls',
-        'jsonls',
-        'marksman',
-        'sqlls',
-        'zls',
     },
     handlers = {
         lsp_zero.default_setup,
@@ -50,20 +38,23 @@ require('mason-lspconfig').setup {
                 },
             }
         end,
-    },
-}
-
----
--- Autocompletion config
----
-
-local cmp = require 'cmp'
-
-cmp.setup {
-    mapping = cmp.mapping.preset.insert {
-        -- Press the enter key to confirm
-        ['<CR>'] = cmp.mapping.confirm { select = false },
-        -- Ctrl + Space to trigger completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
+        tsserver = function()
+            local function organize_imports()
+                local params = {
+                    command = '_typescript.organizeImports',
+                    arguments = { vim.api.nvim_buf_get_name(0) },
+                    title = '',
+                }
+                vim.lsp.buf.execute_command(params)
+            end
+            require('lspconfig').tsserver.setup {
+                commands = {
+                    OrganizeImports = {
+                        organize_imports,
+                        description = 'Organize Imports',
+                    },
+                },
+            }
+        end,
     },
 }

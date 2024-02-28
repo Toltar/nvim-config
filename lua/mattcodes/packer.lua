@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
     }
     use 'rstacruz/vim-closer'
 
+    use 'lukas-reineke/indent-blankline.nvim'
+
     use {
         'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
