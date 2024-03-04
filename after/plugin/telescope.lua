@@ -35,3 +35,6 @@ vim.keymap.set('n', '<leader>lt', builtin.lsp_type_definitions, {})
 -- File Browser Mappings in Telescope
 vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>fc', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
+
+-- Projects.nvim keymaps
+vim.keymap.set('n', '<leader>rp', ':Telescope projects<CR>', { noremap = true })

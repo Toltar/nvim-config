@@ -96,6 +96,12 @@ return require('packer').startup(function(use)
         'stevearc/oil.nvim',
     }
 
+    use {
+        'ahmedkhalf/project.nvim',
+        config = function()
+            require('project_nvim').setup()
+        end,
+    }
     if packer_bootstrap then
         require('packer').sync()
     end
