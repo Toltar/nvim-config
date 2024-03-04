@@ -1,13 +1,13 @@
 local lint = require 'lint'
 
 lint.linters_by_ft = {
-    javascript = { 'eslint_d' },
-    typescript = { 'eslint_d' },
+    javascript = { 'eslint_d', 'eslint', 'biomejs' },
+    typescript = { 'eslint_d', 'eslint', 'biomejs' },
     markdown = { 'markdownlint' },
     json = { 'jsonlint' },
     terraform = { 'tflint' },
     bash = { 'spellcheck' },
-    yaml = { 'yamllint', 'actionlint' },
+    yaml = { 'yamllint', 'actionlint', 'ansible-lint' },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })

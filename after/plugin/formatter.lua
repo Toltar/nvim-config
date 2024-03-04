@@ -1,47 +1,45 @@
-local javascriptformatters = require 'formatter.filetypes.javascript'
-local luaformatters = require 'formatter.filetypes.lua'
-local typescriptformatters = require 'formatter.filetypes.typescript'
-local goformatters = require 'formatter.filetypes.go'
-local rustformatters = require 'formatter.filetypes.rust'
-local yamlformatters = require 'formatter.filetypes.yaml'
-local any = require 'formatter.filetypes.any'
-
-require('formatter').setup {
-    filetype = {
-        javascript = {
-            javascriptformatters.prettier,
-            javascriptformatters.eslint_d,
+local conform = require 'conform'
+conform.setup {
+    formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { { 'prettierd', 'prettier' }, 'biome', 'biome-check', 'dprint' },
+        typescript = { { 'prettierd', 'prettier' }, 'biome', 'biome-check', 'dprint' },
+        rust = { 'rustfmt' },
+        go = { 'goimports', 'gofmt' },
+        sql = { 'sqlfmt' },
+        markdown = { 'markdownlint' },
+        ['*.sh'] = { 'shfmt', 'spellcheck' },
+        ['*.yml'] = { 'yamlfix', 'yamlfmt' },
+        ['*.yaml'] = { 'yamlfix', 'yamlfmt' },
+        ['*.json'] = { 'jsonfix' },
+        ['*'] = { 'codespell' },
+        ['_'] = { 'trim_whitespace' },
+    },
+    formatters = {
+        dprint = {
+            condition = function(ctx)
+                return vim.fs.find({ 'dprint.json' }, { path = ctx.filename, upward = true })[1]
+            end,
         },
-        lua = {
-            luaformatters.stylua,
+        biome = {
+            condition = function(ctx)
+                return vim.fs.find({ 'biome.json' }, { path = ctx.filename, updward = true })[1]
+            end,
         },
-        typescript = {
-            typescriptformatters.prettier,
-            typescriptformatters.eslint_d,
-        },
-        go = {
-            goformatters.gofmt,
-            goformatters.goimports,
-        },
-        rust = {
-            rustformatters.rustfmt,
-        },
-        yaml = {
-            yamlformatters.yamlfmt,
-        },
-        ['*'] = {
-            any.remove_trailing_whitespace,
+        eslint_d = {
+            condition = function(ctx)
+                return vim.fs.find({
+                    'eslint.config.js',
+                    '.eslintrc.cjs',
+                    '.eslintrc.js',
+                    '.eslintrc.yaml',
+                    '.eslintrc.json',
+                }, { path = ctx.filename, upward = true })[1]
+            end,
         },
     },
+    format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+    },
 }
-
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
-augroup('__formatter__', { clear = true })
-autocmd('BufWritePost', {
-    group = '__formatter__',
-    command = ':FormatWrite',
-})
-
-vim.keymap.set('n', '<leader>ff', ':FormatWrite<CR>')

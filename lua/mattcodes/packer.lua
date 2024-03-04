@@ -60,6 +60,7 @@ return require('packer').startup(function(use)
         },
     }
     use 'mfussenegger/nvim-lint'
+    use 'stevearc/conform.nvim'
     use {
         'pmizio/typescript-tools.nvim',
         requires = {
@@ -94,8 +95,6 @@ return require('packer').startup(function(use)
     use {
         'stevearc/oil.nvim',
     }
-
-    use { 'mhartington/formatter.nvim' }
 
     if packer_bootstrap then
         require('packer').sync()
