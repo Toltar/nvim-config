@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["octo.nvim"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/octo.nvim",
+    url = "https://github.com/pwntester/octo.nvim"
+  },
   ["oil.nvim"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/oil.nvim",
