@@ -2,8 +2,8 @@ local conform = require 'conform'
 conform.setup {
     formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { { 'prettierd', 'prettier' }, 'biome', 'biome-check', 'dprint' },
-        typescript = { { 'prettierd', 'prettier' }, 'biome', 'biome-check', 'dprint' },
+        javascript = { 'dprint', { 'prettierd', 'prettier' } },
+        typescript = { 'dprint', { 'prettierd', 'prettier' } },
         rust = { 'rustfmt' },
         go = { 'goimports', 'gofmt' },
         sql = { 'sqlfmt' },

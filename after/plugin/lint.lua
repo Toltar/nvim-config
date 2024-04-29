@@ -21,3 +21,11 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 vim.keymap.set('n', '<leader>ll', function()
     lint.try_lint()
 end, { desc = 'Trigger linting for the current file' })
+
+local lint_progress = function()
+    local linters = lint.get_running()
+    if #linters == 0 then
+        return '0'
+    end
+    return '0 ' .. table.concat(linters, ', ')
+end

@@ -22,3 +22,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 10
+
+vim.opt.textwidth = 120
+vim.opt.colorcolumn = '-1'
+local test = 'sjdfdlikjsdklfjsdlkfjsdlkfjsdlkfjsdlkfjdslkjfdskfjldskjfkldsjfldskjflkdsjflksdjflksdjflksdjflkdsjflkdsj'
