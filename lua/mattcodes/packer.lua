@@ -90,8 +90,6 @@ return require('packer').startup(function(use)
         },
     }
 
-    use 'kyazdani42/nvim-web-devicons'
-
     use {
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
@@ -103,14 +101,6 @@ return require('packer').startup(function(use)
 
     use {
         'ahmedkhalf/project.nvim',
-    }
-    use {
-        'pwntester/octo.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-            'nvim-tree/nvim-web-devicons',
-        },
     }
     use {
         'iamcco/markdown-preview.nvim',
