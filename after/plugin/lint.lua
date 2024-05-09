@@ -1,8 +1,8 @@
 local lint = require 'lint'
 
 lint.linters_by_ft = {
-    javascript = { 'eslint', 'biomejs' },
-    typescript = { 'eslint', 'biomejs' },
+    javascript = { 'eslint' },
+    typescript = { 'eslint' },
     markdown = { 'markdownlint' },
     json = { 'jsonlint' },
     terraform = { 'tflint' },
