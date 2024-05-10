@@ -23,6 +23,7 @@ vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 
 -- Git Mappings in Telescope
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
+vim.keymap.set('n', '<leader>pc', builtin.git_bcommits, {})
 
 -- LSP Mappings in Telescope
 vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
