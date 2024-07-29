@@ -1,12 +1,12 @@
 local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-        vim.cmd [[packeradd packer.nvim]]
-        return true
-    end
-    return false
+  local fn = vim.fn
+  local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+    vim.cmd [[packeradd packer.nvim]]
+    return true
+  end
+  return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -14,105 +14,107 @@ local packer_bootstrap = ensure_packer()
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
 
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-    }
-    use 'sindrets/diffview.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+  }
+  use 'sindrets/diffview.nvim'
 
-    use {
-        'numToStr/Comment.nvim',
-    }
-    use 'rstacruz/vim-closer'
+  use {
+    'numToStr/Comment.nvim',
+  }
+  use 'rstacruz/vim-closer'
 
-    use 'lukas-reineke/indent-blankline.nvim'
-    use 'HiPhish/rainbow-delimiters.nvim'
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'HiPhish/rainbow-delimiters.nvim'
 
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
-    }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+  }
 
-    use {
-        'nvim-telescope/telescope-file-browser.nvim',
-        requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-    }
+  use 'f-person/git-blame.nvim'
 
-    use 'lewis6991/gitsigns.nvim'
-    use { 'catppuccin/nvim', { as = 'catppuccin' } }
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  }
 
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use 'nvim-treesitter/playground'
-    use 'nvim-treesitter/nvim-treesitter-context'
+  use 'lewis6991/gitsigns.nvim'
+  use { 'catppuccin/nvim', { as = 'catppuccin' } }
 
-    -- LSP Manager
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-        },
-    }
-    use 'mfussenegger/nvim-lint'
-    use 'stevearc/conform.nvim'
-    use {
-        'pmizio/typescript-tools.nvim',
-        requires = {
-            'neovim/nvim-lspconfig',
-            'nvim-lua/plenary.nvim',
-        },
-    }
+  -- LSP Manager
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    requires = {
+      --- Uncomment the two plugins below if you want to manage the language servers from neovim
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
-    use 'folke/neodev.nvim'
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
+    },
+  }
+  use 'mfussenegger/nvim-lint'
+  use 'stevearc/conform.nvim'
+  use {
+    'pmizio/typescript-tools.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim',
+    },
+  }
 
-    use 'tpope/vim-fugitive'
+  use 'folke/neodev.nvim'
 
-    use { 'akinsho/toggleterm.nvim', tag = '*' }
+  use 'tpope/vim-fugitive'
 
-    use 'nvim-lua/plenary.nvim'
-    use 'ThePrimeagen/harpoon'
+  use { 'akinsho/toggleterm.nvim', tag = '*' }
 
-    use {
-        'SmiteshP/nvim-navic',
-        requires = {
-            'neovim/nvim-lspconfig',
-        },
-    }
+  use 'nvim-lua/plenary.nvim'
+  use 'ThePrimeagen/harpoon'
 
-    use 'kyazdani42/nvim-web-devicons'
-    use {
-        'folke/trouble.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
-    }
+  use {
+    'SmiteshP/nvim-navic',
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
+  }
 
-    use {
-        'stevearc/oil.nvim',
-    }
+  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+  }
 
-    use {
-        'ahmedkhalf/project.nvim',
-    }
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && npm install',
-        setup = function()
-            vim.g.mkdp_filetypes = { 'markdown' }
-        end,
-        ft = { 'markdown' },
-    }
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+  use {
+    'stevearc/oil.nvim',
+  }
+
+  use {
+    'ahmedkhalf/project.nvim',
+  }
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  }
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
