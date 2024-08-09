@@ -12,6 +12,18 @@ obsidian.setup({
     nvim_cmp = true,
     min_chars = 2
   },
+  sort_by = "modified",
+  picker = {
+    name = "telescope.nvim",
+    note_mappings = {
+      new = "<C-x>",
+      insert_link = "<C-l>",
+    },
+    tag_mappings = {
+      tag_note = "<C-x>",
+      insert_tag = "<C-l>",
+    },
+  },
   ui = {
     enable = true,         -- set to false to disable all additional syntax features
     update_debounce = 200, -- update delay after a text change (in milliseconds)
@@ -40,7 +52,7 @@ obsidian.setup({
     block_ids = { hl_group = "ObsidianBlockID" },
     hl_groups = {
       -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-      ObsidianTodo = { bold = true, fg = "#f78c6c" },
+      ObsidianTodo = { bold = true, fg = "#ffffff" },
       ObsidianDone = { bold = true, fg = "#89ddff" },
       ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
       ObsidianTilde = { bold = true, fg = "#ff5370" },
