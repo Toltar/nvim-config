@@ -28,6 +28,12 @@ return require('packer').startup(function(use)
   }
   use 'rstacruz/vim-closer'
 
+  use {
+    'tpope/vim-dadbod',
+    'kristijanhusak/vim-dadbod-completion',
+    'kristijanhusak/vim-dadbod-ui'
+  }
+
   use 'lukas-reineke/indent-blankline.nvim'
   use 'HiPhish/rainbow-delimiters.nvim'
 

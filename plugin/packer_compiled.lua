@@ -251,6 +251,21 @@ _G.packer_plugins = {
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-closer",
     url = "https://github.com/rstacruz/vim-closer"
   },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-dadbod",
+    url = "https://github.com/tpope/vim-dadbod"
+  },
+  ["vim-dadbod-completion"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-dadbod-completion",
+    url = "https://github.com/kristijanhusak/vim-dadbod-completion"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
+    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/madmin/.local/share/nvim/site/pack/packer/start/vim-fugitive",
