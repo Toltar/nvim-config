@@ -15,6 +15,7 @@ require('mason').setup {}
 require('mason-lspconfig').setup {
   ensure_installed = {
     'tsserver',
+    'gopls',
     'eslint',
     'rust_analyzer',
     'zls',     -- zig
