@@ -5,7 +5,7 @@ return {
     local telescope = require('telescope')
     local builtin = require 'telescope.builtin'
 
-  -- Telescope Settings
+    -- Telescope Settings
     telescope.setup {
       pickers = {
         find_files = {
@@ -42,6 +42,6 @@ return {
     vim.keymap.set('n', '<leader>fc', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
     
     -- Projects.nvim keymaps
-    vim.keymap.set('n', '<leader>rp', ':Telescope projects<CR>', { noremap = true }
+    vim.keymap.set('n', '<leader>rp', ':Telescope projects<CR>', { noremap = true })
   end
 }
