@@ -13,6 +13,3 @@ vim.keymap.set('n', '<leader>wh', '<C-w>h')
 -- Paste without loosing past buffer
 vim.keymap.set('n', '<leader>p', '"_dP')
 
--- Bash script keymaps -------------------------------------
--- Add execute permission to file with leader + x
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })

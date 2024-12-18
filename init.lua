@@ -1,3 +1,4 @@
-require 'mattcodes.remap'
-require 'mattcodes.set'
-require 'mattcodes.packer'
+require 'config.lazy'
+require 'config.remap'
+require 'config.set'
+
