@@ -8,5 +8,4 @@ This holds all my configuration for Neovim. I created this config working from t
 ## Setup
 
 1. Run the `install_dependencies.sh` file to install all the dependencies. This installs things like [ripgrep](https://github.com/BurntSushi/ripgrep) for the [Telescope File Browser](https://github.com/nvim-telescope/telescope-file-browser.nvim).
-2. Go into [packer.lua](./lua/mattcodes/packer.lua) and run `:so` and `:PackerSync` to run packer and install everything.
 
