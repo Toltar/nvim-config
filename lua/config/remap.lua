@@ -12,4 +12,3 @@ vim.keymap.set('n', '<leader>wh', '<C-w>h')
 
 -- Paste without loosing past buffer
 vim.keymap.set('n', '<leader>p', '"_dP')
-
