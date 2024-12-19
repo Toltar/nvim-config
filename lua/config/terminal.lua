@@ -13,7 +13,7 @@ local split_terminal_state = {
         current_buffer = -1,
     },
 }
-function createNewTerminal()
+local createNewTerminal = function()
     -- Create a vsplit window
     vim.cmd.vnew()
     -- Set it to a terminal
@@ -40,7 +40,7 @@ local toggle_terminal = function()
         vim.api.nvim_win_hide(split_terminal_state.terminal.current_window)
     end
 end
-vim.keymap.set('n', '<space>to', toggle_terminal)
+vim.keymap.set('n', '<C-\\>', toggle_terminal)
 
 -- TODO: Revisit this in the future for possible wins with building and scripting
 -- you can use this to run make or go build or anything.
