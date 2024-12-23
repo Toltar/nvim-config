@@ -3,6 +3,10 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- Colors
+-- ======
+vim.opt.background = 'dark'
+
 -- SPACING AND INDENTATION
 -- =======================
 vim.opt.tabstop = 2
