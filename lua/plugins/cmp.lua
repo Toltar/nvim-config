@@ -59,61 +59,61 @@
 --   ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
 --   ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 return {
-    {
-        'saghen/blink.cmp',
-        dependencies = 'rafamadriz/friendly-snippets',
-        version = '0.7.6',
-        config = function()
-            local blink_cmp = require 'blink.cmp'
-            blink_cmp.setup {
-                enabled = function()
-                    return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
-                end,
-                keymap = { preset = 'default' },
-                appearance = {
-                    highlight_ns = vim.api.nvim_create_namespace 'blink_cmp',
-                    use_nvim_cmp_as_default = true,
-                    nerd_font_variant = 'mono',
-                    kind_icons = {
-                        Text = '󰉿',
-                        Method = '',
-                        Function = '󰊕',
-                        Constructor = '󰒓',
-
-                        Field = '󰜢',
-                        Variable = '󰆦',
-                        Property = '󰖷',
-
-                        Class = '',
-                        Interface = '',
-                        Struct = '',
-                        Module = '󰕳',
-
-                        Unit = '󰪚',
-                        Value = '󰦨',
-                        Enum = '',
-                        EnumMember = '',
-
-                        Keyword = '󰻾',
-                        Constant = '󰏿',
-
-                        Snippet = '󱄽',
-                        Color = '󰏘',
-                        File = '󰈔',
-                        Reference = '󰬲',
-                        Folder = '󰉋',
-                        Event = '󱐋',
-                        Operator = '󰪚',
-                        TypeParameter = '󰬛',
-                    },
-                },
-                sources = {
-                    default = { 'lsp', 'path', 'snippets', 'buffer' },
-                },
-                signature = { enabled = true },
-                completion = {},
-                snippets = {},
-            }
+  {
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = '0.7.6',
+    config = function()
+      local blink_cmp = require 'blink.cmp'
+      blink_cmp.setup {
+        enabled = function()
+          return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
         end,
-    },
+        keymap = { preset = 'default' },
+        appearance = {
+          highlight_ns = vim.api.nvim_create_namespace 'blink_cmp',
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = 'mono',
+          kind_icons = {
+            Text = '󰉿',
+            Method = '',
+            Function = '󰊕',
+            Constructor = '󰒓',
+
+            Field = '󰜢',
+            Variable = '󰆦',
+            Property = '󰖷',
+
+            Class = '',
+            Interface = '',
+            Struct = '',
+            Module = '󰕳',
+
+            Unit = '󰪚',
+            Value = '󰦨',
+            Enum = '',
+            EnumMember = '',
+
+            Keyword = '󰻾',
+            Constant = '󰏿',
+
+            Snippet = '󱄽',
+            Color = '󰏘',
+            File = '󰈔',
+            Reference = '󰬲',
+            Folder = '󰉋',
+            Event = '󱐋',
+            Operator = '󰪚',
+            TypeParameter = '󰬛',
+          },
+        },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        signature = { enabled = true },
+        completion = {},
+        snippets = {},
+      }
+    end,
+  },
 }
