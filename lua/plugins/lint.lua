@@ -5,7 +5,6 @@ return {
       local lint = require 'lint'
       local utils = require '../utils/utils'
       local ensure_installed = {
-        'eslint_d', -- typescript and js
         'markdownlint',
         'jsonlint', -- json
         'tflint', -- for terraform
