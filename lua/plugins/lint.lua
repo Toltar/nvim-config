@@ -14,15 +14,17 @@ return {
         'hadolint', -- for dockerfiles
         'pylint', -- for python
       }
-      local installed = {}
-      for dir in io.popen([[ls -pa ~/.local/share/nvim/mason/packages]]):lines() do
-        if dir ~= './' or dir ~= '../' then
-          table.insert(installed, dir:sub(1, -2))
-        end
+      local installed_mason_packages = {}
+      if vim.fn.has 'win32' == 1 then
+        local mason_path = '%HOMEPATH%\\AppData\\Local\\nvim-data\\mason\\packages'
+        installed_mason_packages = utils.scan_directory_for_directories_in_windows(mason_path)
+      else
+        local mason_path = '~/.local/share/nvim/mason/packages'
+        installed_mason_packages = utils.scan_directory_for_directories_in_linux(mason_path)
       end
 
       for _, value in ipairs(ensure_installed) do
-        if not utils.table_has_value(installed, value) then
+        if not utils.table_has_value(installed_mason_packages, value) then
           local command = string.format('MasonInstall %s', value)
           vim.cmd(command)
         end
