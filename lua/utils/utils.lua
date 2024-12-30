@@ -14,7 +14,6 @@ return {
       return t
     end
     for dir in pdir:lines() do
-      print(dir)
       i = i + 1
       t[i] = dir
     end
@@ -28,7 +27,6 @@ return {
       return t
     end
     for dir in pdir:lines() do
-      print(dir)
       i = i + 1
       t[i] = dir
     end
