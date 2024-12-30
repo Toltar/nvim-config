@@ -1,6 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    'williamboman/mason-lspconfig.nvim',
     dependencies = {
       {
         'folke/lazydev.nvim',
@@ -15,7 +16,6 @@ return {
       'saghen/blink.cmp',
     },
     config = function()
-      require('mason').setup()
       local utils = require '../utils/utils'
       local ensure_language_server_installed = {
         'lua-language-server',
@@ -36,23 +36,9 @@ return {
         'python-lsp-server',
         'gdtoolkit',
       }
-      local installed_mason_packages = {}
-      if vim.fn.has 'win32' == 1 then
-        local mason_path = '%HOMEPATH%\\AppData\\Local\\nvim-data\\mason\\packages'
-        installed_mason_packages = utils.scan_directory_for_directories_in_windows(mason_path)
-      else
-        local mason_path = '~/.local/share/nvim/mason/packages'
-        installed_mason_packages = utils.scan_directory_for_directories_in_linux(mason_path)
-      end
-
-      for _, value in ipairs(ensure_language_server_installed) do
-        if not utils.table_has_value(installed_mason_packages, value) then
-          if vim.fn.has 'win32' ~= 1 then
-            local command = string.format('MasonInstall %s', value)
-            vim.cmd(command)
-          end
-        end
-      end
+      require('mason-lspconfig').setup {
+        ensure_installed = ensure_language_server_installed,
+      }
 
       local lspconfig = require 'lspconfig'
       local blinkcmp_capabilities = require('blink.cmp').get_lsp_capabilities()

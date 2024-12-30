@@ -4,7 +4,7 @@ return {
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
     'williamboman/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim'
+    'jay-babu/mason-nvim-dap.nvim',
   },
   config = function()
     local dap = require 'dap'
@@ -20,7 +20,7 @@ return {
         'codelldb',
         'debugpy',
         'js-debug-adapter',
-      },   
+      },
     }
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
@@ -45,5 +45,4 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
   end,
-
 }

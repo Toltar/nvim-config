@@ -1,9 +1,9 @@
 return {
   {
     'mfussenegger/nvim-lint',
+    'rshkarin/mason-nvim-lint',
     config = function()
       local lint = require 'lint'
-      local utils = require '../utils/utils'
       local ensure_installed = {
         'markdownlint',
         'jsonlint', -- json
@@ -13,21 +13,10 @@ return {
         'hadolint', -- for dockerfiles
         'pylint', -- for python
       }
-      local installed_mason_packages = {}
-      if vim.fn.has 'win32' == 1 then
-        local mason_path = '%HOMEPATH%\\AppData\\Local\\nvim-data\\mason\\packages'
-        installed_mason_packages = utils.scan_directory_for_directories_in_windows(mason_path)
-      else
-        local mason_path = '~/.local/share/nvim/mason/packages'
-        installed_mason_packages = utils.scan_directory_for_directories_in_linux(mason_path)
-      end
-
-      for _, value in ipairs(ensure_installed) do
-        if not utils.table_has_value(installed_mason_packages, value) then
-          local command = string.format('MasonInstall %s', value)
-          vim.cmd(command)
-        end
-      end
+      require('mason-nvim-lint').setup {
+        ensure_installed = ensure_installed,
+        automatic_installation = true,
+      }
 
       lint.linters_by_ft = {
         javascript = { 'eslint' },
