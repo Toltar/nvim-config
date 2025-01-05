@@ -1,17 +1,22 @@
 return {
   {
     'mfussenegger/nvim-lint',
-    'rshkarin/mason-nvim-lint',
+    dependencies = {
+      { 'williamboman/mason.nvim', config = true },
+      'rshkarin/mason-nvim-lint',
+    },
     config = function()
       local lint = require 'lint'
       local ensure_installed = {
         'markdownlint',
         'jsonlint', -- json
-        'tflint', -- for terraform
+        'tflint',   -- for terraform
         'yamllint', -- yaml
-        'bacon', -- for rust
+        'bacon',    -- for rust
         'hadolint', -- for dockerfiles
-        'pylint', -- for python
+        'pylint',   -- for python
+        'eslint_d',
+        'bacon',
       }
       require('mason-nvim-lint').setup {
         ensure_installed = ensure_installed,
@@ -19,8 +24,8 @@ return {
       }
 
       lint.linters_by_ft = {
-        javascript = { 'eslint' },
-        typescript = { 'eslint' },
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
         markdown = { 'markdownlint' },
         json = { 'jsonlint' },
         terraform = { 'tflint' },

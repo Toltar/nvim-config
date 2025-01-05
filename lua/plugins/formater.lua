@@ -2,11 +2,14 @@ return {
   {
     'stevearc/conform.nvim',
     dependencies = {
-      'williamboman/mason.nvim',
+      { 'williamboman/mason.nvim', config = true },
       'zapling/mason-conform.nvim',
     },
     config = function()
-      require('conform').setup {
+      local conform = require 'conform'
+      conform.setup {
+        event = { 'BufWritePre' },
+        cmd = { 'ConformInfo' },
         formatters_by_ft = {
           lua = { 'stylua' },
           go = { 'goimports', 'gofumpt' },

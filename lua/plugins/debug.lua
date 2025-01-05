@@ -15,7 +15,7 @@ return {
       handlers = {},
       ensure_installed = {
         'delve',
-        'bash-debug-adapter',
+        'bash_debug_adapter',
         'chrome-debug-adapter',
         'codelldb',
         'debugpy',

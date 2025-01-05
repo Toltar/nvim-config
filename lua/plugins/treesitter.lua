@@ -34,6 +34,9 @@ return {
           'toml',
           'python',
           'sql',
+          'elixir',
+          'eex',
+          'heex',
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)

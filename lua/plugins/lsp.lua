@@ -1,7 +1,6 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    'williamboman/mason-lspconfig.nvim',
     dependencies = {
       {
         'folke/lazydev.nvim',
@@ -12,121 +11,136 @@ return {
           },
         },
       },
-      'williamboman/mason.nvim',
-      'saghen/blink.cmp',
+      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      local utils = require '../utils/utils'
-      local ensure_language_server_installed = {
-        'lua-language-server',
-        'angular-language-server',
-        'vue-language-server',
-        'ansible-language-server',
-        'gopls',
-        'zls',
-        'typescript-language-server',
-        'sqlls',
-        'rust-analyzer',
-        'eslint-lsp',
-        'docker-compose-language-service',
-        'dockerfile-language-server',
-        'css-lsp',
-        'css-variables-language-server',
-        'json-lsp',
-        'python-lsp-server',
-        'gdtoolkit',
-      }
-      require('mason-lspconfig').setup {
-        ensure_installed = ensure_language_server_installed,
-      }
-
-      local lspconfig = require 'lspconfig'
-      local blinkcmp_capabilities = require('blink.cmp').get_lsp_capabilities()
-      local serverConfigs = {
-        angularls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        lua_ls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        rust_analyzer = {
-          capabilities = blinkcmp_capabilities,
-        },
-        ts_ls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        zls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        gopls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        cssls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        css_variables = {
-          capabilities = blinkcmp_capabilities,
-        },
-        vuels = {
-          capabilities = blinkcmp_capabilities,
-        },
-        eslint = {
-          capabilities = blinkcmp_capabilities,
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = bufnr,
-              command = 'EslintFixAll',
-            })
-          end,
-        },
-        ansiblels = {
-          capabilities = blinkcmp_capabilities,
-        },
-        sqlls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        docker_compose_language_service = {
-          capabilities = blinkcmp_capabilities,
-        },
-        dockerls = {
-          capabilities = blinkcmp_capabilities,
-        },
-        jsonls = {
-          capabilities = blinkcmp_capabilities,
-        },
-      }
-      -- setup all language servers
-      for server, config in pairs(serverConfigs) do
-        lspconfig[server].setup(config)
-      end
-
-      -- Can't add 'gdscript' to the servers because it is not listed in Mason. So :MasonInstall gdscript will not work. So here is the work around.
-      local gdscript_config = {
-        capabilities = blinkcmp_capabilities,
-        settings = {},
-      }
-      if vim.fn.has 'win32' == 1 then
-        gdscript_config['cmd'] = { 'ncat', 'localhost', os.getenv 'GDScript_Port' or '6005' }
-      end
-      lspconfig.gdscript.setup(gdscript_config)
-
-      -- setup keymaps on lsp attachment
       vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP Actions',
+        group = vim.api.nvim_create_augroup('matt-lsp-attach', { clear = true }),
         callback = function(event)
-          local opts = { buffer = event.buf }
-          vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-          vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-          vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-          vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-          vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-          vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-          vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
+
+          -- Jump to the definition of the word under your cursor.
+          --  This is where a variable was first declared, or where a function is defined, etc.
+          --  To jump back, press <C-t>.
+          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+
+          -- Find references for the word under your cursor.
+          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+
+          -- Jump to the implementation of the word under your cursor.
+          --  Useful when your language has ways of declaring types without an actual implementation.
+          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+
+          -- Jump to the type of the word under your cursor.
+          --  Useful when you're not sure what type a variable is and you want to see
+          --  the definition of its *type*, not where it was *defined*.
+          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+
+          -- Fuzzy find all the symbols in your current document.
+          --  Symbols are things like variables, functions, types, etc.
+          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+
+          -- Fuzzy find all the symbols in your current workspace.
+          --  Similar to document symbols, except searches over your entire project.
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+          -- Rename the variable under your cursor.
+          --  Most Language Servers support renaming across files, etc.
+          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+
+          -- Execute a code action, usually your cursor needs to be on top of an error
+          -- or a suggestion from your LSP for this to activate.
+          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup('matt-lsp-highlight', { clear = false })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('lsp-lsp-detach', { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              end,
+            })
+          end
         end,
       })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      local servers = {
+        angularls = {},
+        astro = {},
+        bashls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+        },
+        rust_analyzer = {},
+        ts_ls = {},
+        zls = {},
+        gopls = {},
+        cssls = {},
+        css_variables = {},
+        vuels = {},
+        ansiblels = {},
+        sqlls = {},
+        docker_compose_language_service = {},
+        dockerls = {},
+        jsonls = {},
+        elixirls = {
+          cmd = { 'elixir-ls' },
+        },
+        tailwindcss = {
+          init_options = {
+            userLanguages = {
+              elixir = 'html-eex',
+              eelixir = 'html-eex',
+              heex = 'html-eex',
+            },
+          },
+        },
+      }
+      local ensure_installed = {}
+      for k, _ in pairs(servers) do
+        table.insert(ensure_installed, k)
+      end
+
+      require('mason').setup()
+
+      require 'mason-lspconfig'.setup {
+        ensure_installed = ensure_installed,
+        automatic_installation = true,
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
+      }
     end,
   },
 }
