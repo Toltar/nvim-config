@@ -12,11 +12,9 @@ return {
         'jsonlint', -- json
         'tflint',   -- for terraform
         'yamllint', -- yaml
-        'bacon',    -- for rust
         'hadolint', -- for dockerfiles
         'pylint',   -- for python
         'eslint_d',
-        'bacon',
       }
       require('mason-nvim-lint').setup {
         ensure_installed = ensure_installed,
@@ -30,7 +28,6 @@ return {
         json = { 'jsonlint' },
         terraform = { 'tflint' },
         yaml = { 'yamllint' },
-        rust = { 'bacon' },
         docker = { 'hadolint' },
         python = { 'pylint' },
       }
