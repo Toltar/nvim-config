@@ -20,6 +20,7 @@ return {
         'codelldb',
         'debugpy',
         'js-debug-adapter',
+        'java-debug-adapter',
       },
     }
     dapui.setup {

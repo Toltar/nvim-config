@@ -19,6 +19,9 @@ return {
           javascript = { 'prettierd' },
           typescript = { 'prettierd' },
           python = { 'autoflake', 'black' },
+          hcl = { 'terraform_fmt' },
+          terraform = { 'terraform_fmt' },
+          tf = { 'terraform_fmt' },
         },
         format_on_save = {
           lsp_format = 'fallback',
