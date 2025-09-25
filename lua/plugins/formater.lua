@@ -11,7 +11,7 @@ return {
         event = { 'BufWritePre' },
         cmd = { 'ConformInfo' },
         formatters_by_ft = {
-          lua = { 'stylua' },
+          lua = { 'stylua', 'luaformatter' },
           go = { 'goimports', 'gofumpt' },
           sql = { 'sql-formatter' },
           bash = { 'beutysh' },
